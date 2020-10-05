@@ -1,0 +1,10 @@
+<aura:component controller='funController' implements='flexipage:availableForAllPageTypes'>
+    <aura:attribute name='Value' type='Decimal'/>
+    <aura:attribute name='greeting' type='String' default='Hey Boiii'/>
+    <aura:handler name='init' value='{!this}' action='{!c.doFun}'/>
+    
+    <div>
+    	<h1>{!v.greeting}</h1>
+        <h1 class='funStyle'>Total Value of Opps:{!v.Value}</h1>
+    </div>
+</aura:component>

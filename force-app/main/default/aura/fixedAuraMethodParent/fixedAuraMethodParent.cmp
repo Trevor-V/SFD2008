@@ -1,0 +1,10 @@
+<aura:component>
+    <p><h1 style="color:blue;"><b>Parent component calls aura:method in child component.</b></h1></p>
+    <c:fixedAuraMethodChild aura:id="child"/>
+
+    <!--Synchronous method-->
+    <lightning:button label="Call SYNC aura:method" onclick="{!c.callAuraMethod}"/>
+
+    <!--Asynchronous method-->
+    <lightning:button label="Call ASYNC aura:method" onclick="{!c.callAuraMethodServerTrip}"/>
+</aura:component>	

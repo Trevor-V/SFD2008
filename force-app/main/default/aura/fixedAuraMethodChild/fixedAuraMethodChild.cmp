@@ -1,0 +1,17 @@
+<aura:component controller="ExampleMethodApex">
+    <!--Synchronous method-->
+    <aura:method name="logParam" description="Sample method with parameter">
+        <aura:attribute name="message" type="String" default="default message"/>
+    </aura:method>
+
+    <!--Asynchronous Method-->
+    <aura:method name="echo" description="Sample method with server-side call">
+        <aura:attribute name="callback" type="Function"/>
+    </aura:method>
+
+
+
+    <p>This component has an aura:method definition</p>
+
+</aura:component>	
+

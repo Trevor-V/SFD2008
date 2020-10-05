@@ -1,0 +1,26 @@
+<apex:page >
+    <apex:includeLightning />
+    <h1>DEMO FOR LIGHTNING OUT</h1>
+
+    <div id="demo" />
+
+
+
+    <p> There's nothing like the old school and I'm the headmistress </p>
+    <div id="extended" />
+
+    <script>
+        $Lightning.use("c:testApp", function () {
+            console.log("USE WAS ENTERED");
+            $Lightning.createComponent("c:CarListComponent", {}, "demo", function (cmp) 
+            {
+                console.log("This is a Lightning Out example!");            
+            });
+            $Lightning.createComponent("c:OppValue", {}, "extended", function(cmp){
+                console.log("Example Two Renderedddddd");
+            });
+        });
+    </script>
+
+
+</apex:page>

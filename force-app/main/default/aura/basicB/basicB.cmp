@@ -1,0 +1,3 @@
+<aura:component extends="c:Basic">
+    <p>{v.name}</p>
+</aura:component>	

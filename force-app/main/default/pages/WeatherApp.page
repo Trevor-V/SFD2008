@@ -1,0 +1,35 @@
+<apex:page controller="WeatherRemote">
+<head>
+<script>
+    function Build () {
+    Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.WeatherRemote.findAll}',
+        function(result, event){
+            if (event.status) {
+                for (var i=0; i<result.length; i++) {
+                    var accId = result[i].Id;
+                    var name = result[i].Name;
+                    var phone = result[i].Phone;
+                    var location = result[i].Location__c;}
+            else{
+                alert(event.message);
+                }
+            }
+        }   
+        {escape: true}
+    );    
+    }
+</script>
+</head>
+
+<body>
+    <apex:form>
+        <apex:commandButton value = {"Check Weather"} onclick="http://dataservice.accuweather.com/forecasts/v1/daily/5day/"/>
+        <apex:pageBlockSection title="Account " + name, collapsible="True">
+            <apex:outputField {!accId}/>
+            <apex:outputField {!name}/>
+            <apex:outputField {!phone}/>
+            <apex:outputField {!location}/>
+        </apex:pageBlockSection>            
+    </apex:form>
+</body>
+</apex:page>

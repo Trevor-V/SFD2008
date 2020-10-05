@@ -1,0 +1,63 @@
+<!-- c:AuraExample_displayRecord.cmp -->
+<aura:component controller="AuraExample_displayRecordApex" implements="flexipage:availableForAllPageTypes,force:appHostable">
+<!-- This will display a record. For second Lightning session-->
+
+    <!-- First thing we need is....  -->
+    <!-- Ask question - What data types can attributes hold? -->
+    <aura:attribute name="recordId" type="Id" default="0012E00001nrkHXQAY"/><!-- Using a default here is ONLY for demo purposes. DO NOT DO THIS -->
+    <aura:attribute name="Account" type="Account" />
+    <aura:attribute name="Accounts" type="Account[]"/>
+    <aura:attribute name="Contacts" type="Contact[]" description="Used to hold list of Contacts" />
+    <aura:attribute name="Columns" type="List"/>
+
+    <!-- Define any handlers -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <!-- Listens for a specific event then executes the function identified by the action attribute in the component's controller file -->
+    <!-- init fires as the component is loaded onto the page, similar to a constructor of a VF page controller-->
+
+    <!-- Register any events -->
+    <aura:registerEvent name="goto" type="c:ExampleComponentEvent"/>
+
+
+    <!-- Display using lightning:recordForm -->
+
+
+
+    <!-- Display Account using force:recordData.
+        This component gives you granular control of how your table displays (use if you need a custom layout/rendering of data) -->
+    <force:recordData aura:id="accountRecord" 
+            recordId="{!v.recordId}" 
+            fields="Name,Description,Phone,Industry"
+            targetFields="{!v.Account}" 
+            layoutType="FULL"
+            />
+
+            <!-- Use a lightning:card to display the data returned by force:recordData-->
+        <lightning:card iconName="standard:account" title="{!v.Account.Name}">
+            <div class="slds-p-horizontal--small">
+                <p class="slds-text-heading--medium"><lightning:formattedPhone title="Phone" value="{!v.Account.Phone}"/></p>
+                <p class="slds-truncate"><lightning:formattedText title="Description" value="{!v.Account.Description}" /></p>
+                <p class="slds-truncate"><lightning:formattedText title="Industry" value="{!v.Account.Industry}" /></p>
+                
+            </div>
+        </lightning:card>
+
+
+    <!-- Display Contacts based on Account-->
+    <lightning:card iconName="standard:contact" title="{!'Contact List for '+v.Account.Name}">
+        
+    <!-- Contact List Here -->
+        <!-- Lightning:datatable is another base component that we can use to display data.
+            This table populates on init. 
+            BE CAREFUL! This is not available for use in mobile. -->
+        <lightning:datatable data="{!v.Contacts}" 
+                columns="{!v.Columns}" 
+                keyField="Id" 
+                hideCheckboxColumn="true"
+                onrowaction="{!c.handleBtn}"
+
+                />
+
+    </lightning:card>
+
+</aura:component>

@@ -1,0 +1,42 @@
+<aura:component implements="flexipage:availableForAllPageTypes">
+    <!--aura:attribute name="car" type="Object" default="{}"/-->
+    <aura:attribute name="inMake" type="String" />
+    <aura:attribute name="inModel" type="String" />
+    <aura:attribute name="inYear" type="String"/>
+    <aura:attribute name="carList" type="Object[]" description="List of car objects"/>
+
+    <!--aura:handler name="init" value="{!this}" action="{!c.doInit}"/-->
+
+    <div>
+        <h1>Welcome to Fancy Folks' Garage!</h1>
+        
+        Please enter a new car to display in the list.
+    </div>
+
+    <div>
+        <lightning:input aura:id="inMake" type="String" name="Make" label="Car Make" value="{!v.inMake}"/>
+        <lightning:input aura:id="inModel" type="String" name="Model" label="Car Model" value="{!v.inModel}"/>
+        <lightning:input aura:id="inYear" type="String" name="Year" label="Car Year" value="{!v.inYear}"/>
+
+        <lightning:button variant="brand" label="Save Car" onclick="{!c.saveCar}"/>
+    </div>    
+
+    <table>
+    <tr>
+        <th data-col="Make" onclick="{!c.sort}">Make</th>
+        <th data-col="Model" onclick="{!c.sort}">Model</th>
+        <th data-col="Year" onclick="{!c.sort}">Year</th>
+    </tr>
+    <aura:iteration items="{!v.carList}" var="car">
+        <tr>
+            <td>{!car.Make}</td>
+            <td>{!car.Model}</td>
+            <td>{!car.Year}</td>
+        </tr>
+    </aura:iteration>
+
+    </table>
+
+
+
+</aura:component>
